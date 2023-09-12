@@ -1,38 +1,41 @@
 <template>
+
+    <div class="black-bg" v-if="modal == true">
+      <div class="white-bg">
+        <h4>상세페이지 제목</h4>
+        <p>상세페이지 내용</p>
+        <button @click="modal = false">닫기</button>
+      </div>
+    </div>
+
+
+
   <div class="menu">
      <a v-for="(menus , i) in menuInfo" :key="i">{{ menus }}</a>
   </div>
 
 
 
-  <div>
-    <h4>{{product[0]}}</h4>
-    <p> 60 만원</p>
-    <button @click="reportNumber[0]++">허위매물신고</button>
-    <span>신고수 : {{reportNumber[0]}}</span>
+  <div v-for='(product,index) in data' :key='index'>
+    <img :src='data[index].image' class="room-img">
+    <h4>{{data[index].title }}</h4>
+    <p> {{data[index].price}}원</p>
+    
   </div>
-  <div>
-    <h4>{{product[1]}}</h4>
-    <p> 70 만원</p>
-    <button @click="reportNumber[1]++">허위매물신고</button>
-    <span>신고수 : {{reportNumber[1]}}</span>
-  </div>
-  <div>
-    <h4>{{product[2]}}</h4>
-    <p> 70 만원</p>
-    <button @click="reportNumber[2]++">허위매물신고</button>
-    <span>신고수 : {{reportNumber[2]}}</span>
-  </div>
+
+  
 </template>
 
 <script>
+  import  data  from "./assets/oneRoom.js";
 
 
 export default {
   name: 'App',
   data (){
     return {
-      product : ['역삼동 원룸' , '천호동 원룸' , '마포구 원룸'],
+      data : data,
+      modal : false,
       menuInfo : ['Home', 'Shop','about'],
       reportNumber : [0,0,0]
     }
@@ -52,6 +55,30 @@ export default {
 </script>
 
 <style>
+
+  body {
+  margin : 0;
+}
+div {
+  box-sizing: border-box;
+}
+.black-bg {
+  width: 100%; height:100%;
+  background: rgba(0,0,0,0.5);
+  position: fixed; padding: 20px;
+}
+.white-bg {
+  width: 50%; background: white;
+  border-radius: 8px;
+  padding: 20px;
+} 
+
+  
+  .room-img{
+    width: 50%;
+    margin-top: 40px;
+  }
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -75,4 +102,3 @@ export default {
 </style>
 
 
-// v-if 와 모달창 만들기 (Vue에서 동적인 UI 만드는 법)
