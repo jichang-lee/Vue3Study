@@ -1,21 +1,14 @@
 <template>
 
-    <div class="black-bg" v-if="modal == true">
-      <div class="white-bg">
-        <img :src="data[productDetail].image" style='width: 60%' >
-        <h4>{{data[productDetail].title}}</h4>
-        <p>{{data[productDetail].content}}</p>
-        <button @click="modal = false">닫기</button>
-      </div>
-    </div>
+    <ModalInfo></ModalInfo>
 
-
+  <DiscountInfo></DiscountInfo>
 
   <div class="menu">
      <a v-for="(menus , i) in menuInfo" :key="i">{{ menus }}</a>
   </div>
 
-
+  
 
   <div v-for='(product,index) in data' :key='index'>
     <img :src='product.image' class="room-img">
@@ -30,7 +23,8 @@
 
 <script>
   import  data  from "./assets/oneRoom.js";
-
+  import DiscountInfo from "./Discount.vue";
+  import ModalInfo from "./ModalVener.vue"
 
 export default {
   name: 'App',
@@ -52,7 +46,7 @@ export default {
   }, 
   
   components: {
-    
+    DiscountInfo, ModalInfo
   }
 }
 </script>
@@ -65,6 +59,13 @@ export default {
 div {
   box-sizing: border-box;
 }
+.discount {
+  background: #eee;
+  padding: 10px;
+  margin: 10px;
+  border-radius: 5px;
+}
+
 .black-bg {
   width: 100%; height:100%;
   background: rgba(0,0,0,0.5);
