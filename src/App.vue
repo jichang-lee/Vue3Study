@@ -1,8 +1,8 @@
 <template>
 
-    <ModalInfo></ModalInfo>
+    <ModalInfo :data='data' :productDetail='productDetail' :modal='modal'></ModalInfo>
 
-  <DiscountInfo></DiscountInfo>
+  <DiscountInfo ></DiscountInfo>
 
   <div class="menu">
      <a v-for="(menus , i) in menuInfo" :key="i">{{ menus }}</a>
@@ -10,19 +10,14 @@
 
   
 
-  <div v-for='(product,index) in data' :key='index'>
-    <img :src='product.image' class="room-img">
-    <h4 @click="modal = true ; productDetail = index"   >
-      {{product.title }}</h4>
-    <p> {{product.price}}원</p>
-    
-  </div>
+ <CardInfo :data='data' ></CardInfo>
 
   
 </template>
 
 <script>
   import  data  from "./assets/oneRoom.js";
+  import CardInfo from './CardInfo.vue';
   import DiscountInfo from "./Discount.vue";
   import ModalInfo from "./ModalVener.vue"
 
@@ -46,7 +41,8 @@ export default {
   }, 
   
   components: {
-    DiscountInfo, ModalInfo
+    DiscountInfo, ModalInfo,
+    CardInfo
   }
 }
 </script>
