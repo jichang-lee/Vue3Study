@@ -2,8 +2,9 @@
 
     <div class="black-bg" v-if="modal == true">
       <div class="white-bg">
-        <h4>상세페이지 제목</h4>
-        <p>상세페이지 내용</p>
+        <img :src="data[productDetail].image" style='width: 60%' >
+        <h4>{{data[productDetail].title}}</h4>
+        <p>{{data[productDetail].content}}</p>
         <button @click="modal = false">닫기</button>
       </div>
     </div>
@@ -17,9 +18,10 @@
 
 
   <div v-for='(product,index) in data' :key='index'>
-    <img :src='data[index].image' class="room-img">
-    <h4>{{data[index].title }}</h4>
-    <p> {{data[index].price}}원</p>
+    <img :src='product.image' class="room-img">
+    <h4 @click="modal = true ; productDetail = index"   >
+      {{product.title }}</h4>
+    <p> {{product.price}}원</p>
     
   </div>
 
@@ -35,6 +37,7 @@ export default {
   data (){
     return {
       data : data,
+      productDetail : 0,
       modal : false,
       menuInfo : ['Home', 'Shop','about'],
       reportNumber : [0,0,0]
@@ -102,3 +105,4 @@ div {
 </style>
 
 
+//모달창 내에 상세페이지 만들기
