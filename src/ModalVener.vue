@@ -21,6 +21,17 @@ export default {
         month : 1,
       }
     },
+    watch : {
+      //감시 할 데이터(){}  a->month데이터(입력한 데이터)
+      month(a){
+        if(a >12 ){
+          alert('13 이상 적지마셈')
+        }else if(isNaN(a)){
+          alert('숫자만 입력 가능함')
+          this.month = 1
+        }
+      }
+    },
     props : {
       data : Array,
       productDetail : Number,
