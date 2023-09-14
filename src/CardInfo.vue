@@ -1,9 +1,10 @@
 <template>
-   <div v-for='(product,index) in data' :key='index'>
-    <img :src='product.image' class="room-img">
-    <h4 >
-      {{product.title }}</h4>
-    <p> {{product.price}}원</p>
+   <div>
+    <img :src='data.image' class="room-img">
+    <h4 @click="send">
+      {{data.title }}</h4>
+    <p> {{data.price}}원</p>
+    
   </div>
 </template>
 
@@ -12,6 +13,12 @@ export default {
     name:'cardInfo',
     props : {
         data : Array
+    },
+    methods : {
+      send(){
+        this.$emit('openModal',this.data.id)
+      },
+       
     }
 
 }
@@ -21,4 +28,4 @@ export default {
 
 </style>
 
-@click="modal = true ; productDetail = index"   
+

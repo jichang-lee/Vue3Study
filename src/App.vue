@@ -1,6 +1,7 @@
 <template>
 
-    <ModalInfo :data='data' :productDetail='productDetail' :modal='modal'></ModalInfo>
+    <ModalInfo :data='data' :productDetail='productDetail' :modal='modal'
+      @cancleBtn="modal = false"></ModalInfo>
 
   <DiscountInfo ></DiscountInfo>
 
@@ -10,7 +11,10 @@
 
   
 
- <CardInfo :data='data' ></CardInfo>
+ <CardInfo @openModal="modal=true ; productDetail=$event "
+   :data='data[i]' v-for="(dataTalble,i) in data" :key="i" 
+    >
+   </CardInfo>
 
   
 </template>
@@ -102,4 +106,4 @@ div {
 </style>
 
 
-//모달창 내에 상세페이지 만들기
+ 
