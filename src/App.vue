@@ -5,7 +5,7 @@
 
 
 
-  <DiscountInfo ></DiscountInfo>
+  <DiscountInfo v-if="showDiscount == true" ></DiscountInfo>
 
   <div class="menu">
      <a v-for="(menus , i) in menuInfo" :key="i">{{ menus }}</a>
@@ -38,7 +38,9 @@ export default {
       productDetail : 0,
       modal : false,
       menuInfo : ['Home', 'Shop','about'],
-      reportNumber : [0,0,0]
+      reportNumber : [0,0,0],
+      showDiscount : true,
+
     }
   },
   methods : {
@@ -55,6 +57,16 @@ export default {
       this.data = [...this.dataOriginal]; //그냥 넣을 시 값 공유
     }
 
+  },
+  
+  //HTML 생성 전
+  created(){
+    //서버에서 데이터 가져오는 데이터
+  },
+  mounted(){
+    setTimeout(()=>{
+      this.showDiscount = false;
+    }, 2000)
   }, 
   
   components: {
@@ -118,5 +130,5 @@ div {
 
 </style>
 
-
- 
+// Lifecycle Hook 
+// https://vuejs.org/guide/essentials/lifecycle.html
