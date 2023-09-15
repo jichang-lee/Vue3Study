@@ -3,12 +3,16 @@
     <ModalInfo :data='data' :productDetail='productDetail' :modal='modal'
       @cancleBtn="modal = false"></ModalInfo>
 
+
+
   <DiscountInfo ></DiscountInfo>
 
   <div class="menu">
      <a v-for="(menus , i) in menuInfo" :key="i">{{ menus }}</a>
   </div>
 
+  <button @click="priceSort">가격순 정렬</button>
+  <button @click="sortBack">되돌리기</button>
   
 
  <CardInfo @openModal="modal=true ; productDetail=$event "
@@ -29,6 +33,7 @@ export default {
   name: 'App',
   data (){
     return {
+      dataOriginal : [...data], //[array자료] 원본 데이터 보존을 위함
       data : data,
       productDetail : 0,
       modal : false,
@@ -40,6 +45,14 @@ export default {
     increase(){
       this.reportNumber ++
       
+    },
+    priceSort(){
+      this.data.sort(function(a,b){
+        return a.price - b.price ; // 가격순 {공식임}
+      })
+    },
+    sortBack(){
+      this.data = [...this.dataOriginal]; //그냥 넣을 시 값 공유
     }
 
   }, 
