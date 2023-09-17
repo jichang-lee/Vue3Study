@@ -21,3 +21,5 @@ const routes = [
 
 
   //{{ $route.params.파라미터명 }}
+
+  

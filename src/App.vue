@@ -28,7 +28,23 @@
   import CardInfo from './CardInfo.vue';
   import DiscountInfo from "./Discount.vue";
   import ModalInfo from "./ModalVener.vue"
+  import { createRouter, createWebHistory } from 'vue-router'
 
+// const router = [];
+const router = createRouter({
+  history: createWebHistory(),
+  routes,
+})
+
+const routes = [
+  {
+    path: "/hello",
+    component: HelloWorld,
+    beforeEnter: (to, from)=>{
+      return to.fullPath
+    }
+  }
+];
 export default {
   name: 'App',
   data (){
